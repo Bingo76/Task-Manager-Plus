@@ -240,20 +240,26 @@ void getInput(char *input, int size) {
 
     tcgetattr(STDIN_FILENO, &oldt); // Save current terminal settings
     newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO); // Disable buffering and echo
+    newt.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode and echo
     tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Apply new settings
 
     while ((ch = getchar()) != '\n' && pos < size - 1) {
-        if (ch == 127) { // Handle backspace
+        if (ch == 127 || ch == '\b') { // Handle backspace for different terminals
             if (pos > 0) {
-                printf("\b \b"); // Move back, print space, and move back again
-                pos--;
+                pos--; // Move position back
+                printf("\b \b"); // Erase last character on screen
             }
-        } else if (isprint(ch)) { // Add printable character
+        } else if (isprint(ch)) { // Add only printable characters
             input[pos++] = ch;
-            putchar(ch);
+            putchar(ch); // Echo character
         }
     }
+    input[pos] = '\0'; // Null-terminate input
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Restore terminal settings
+    printf("\n");
+}
+
     input[pos] = '\0'; // Null-terminate input
 
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Restore terminal settings
