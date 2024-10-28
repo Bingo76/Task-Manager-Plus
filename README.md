@@ -1,3 +1,4 @@
+
 # Task Manager Plus (TMP)
 
 ## Installation
@@ -6,8 +7,8 @@
 `makepkg -si`
 
 ## Usage
-run 'tmp' in terminal
+run `tmp` in your terminal
 
-## Dependancies
-depends=('cjson' 'gcc' 'make')
+## Dependencies
+dependencies=('cjson' 'gcc' 'make')
 
