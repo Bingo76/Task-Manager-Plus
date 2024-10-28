@@ -39,7 +39,7 @@ int main() {
     int choice;
 
     while (1) {
-        printf("\n=== Task Manager Plus ===\n");
+        printf("\n=== ToDoPlus ===\n");
         printf("1. Add Task\n");
         printf("2. Mark Task as Done\n");
         printf("3. Display Tasks and Stats\n");

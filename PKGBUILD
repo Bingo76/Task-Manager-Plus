@@ -1,4 +1,4 @@
-# Maintainer: Your Name <youremail@example.com>
+# Maintainer: Michael Stevenson <mikestevenson@tutamail.com>
 pkgname=tdp
 pkgver=1.0.0
 pkgrel=1
@@ -16,6 +16,6 @@ build() {
 
 package() {
     cd "$srcdir"
-    install -Dm755 tdp "$pkgdir/usr/bin/tmp"
+    install -Dm755 tdp "$pkgdir/usr/bin/tdp"
 }
 
